@@ -52,9 +52,6 @@ module.exports = function(grunt) {
     'traceur:deploy',
     'concat_sourcemap:compile_js',
     'ngAnnotate:compile',
-    'uglify',
-    'bushcaster:dist',
-    'string-replace:dist',
-    'compress:all' ]);
+   ]);
 
 }
