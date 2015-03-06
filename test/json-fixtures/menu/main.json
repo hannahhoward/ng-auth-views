@@ -1,0 +1,18 @@
+{
+  "links": {
+    "self": "/navigation/main"
+  },
+  "data":  [
+    { "links" : {},
+      "data" : {
+        "name": "Services",
+        "path": "/services",
+        "type":  [ "page" ],
+        "children": [
+          {
+          }
+        ]
+      }
+    }
+  ]
+}
