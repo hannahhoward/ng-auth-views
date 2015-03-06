@@ -35773,6 +35773,12 @@ System.registerModule("traceur-runtime@0.0.79/src/runtime/polyfills/polyfills.js
 });
 System.get("traceur-runtime@0.0.79/src/runtime/polyfills/polyfills.js" + '');
 
+System.registerModule("../build/templates-app", [], function() {
+  "use strict";
+  var __moduleName = "../build/templates-app";
+  angular.module('templates-app', []);
+  return {};
+});
 System.registerModule("../vendor/a1atscript/dist/annotations", [], function() {
   "use strict";
   var __moduleName = "../vendor/a1atscript/dist/annotations";
@@ -37478,6 +37484,7 @@ System.registerModule("../src/auth.js", [], function() {
   "use strict";
   var __moduleName = "../src/auth.js";
   var backendUrl = System.get("../src/common/config").backendUrl;
+  System.get("../build/templates-app");
   var Sessions = System.get("../src/sessions/sessions").default;
   var Registrations = System.get("../src/registrations/registrations").default;
   var Confirmations = System.get("../src/confirmations/confirmations").default;
@@ -37486,29 +37493,12 @@ System.registerModule("../src/auth.js", [], function() {
   var $__6 = System.get("../vendor/a1atscript/dist/a1atscript"),
       Config = $__6.Config,
       Module = $__6.Module;
-  function authSetup($authProvider, authConfigProvider) {
-    var location = window.location.href;
-    var confirmationLocation = location.split("#")[0] + "#/confirmed";
-    var passwordResetSuccessLocation = location.split("#")[0] + "#/update-password";
-    $authProvider.configure({
-      apiUrl: backendUrl,
-      tokenValidationPath: 'users/validate_token',
-      signOutUrl: 'users/sign_out',
-      emailRegistrationPath: 'users',
-      accountUpdatePath: 'users',
-      accountDeletePath: 'users',
-      passwordResetPath: 'users/password',
-      passwordUpdatePath: 'users/password',
-      emailSignInPath: 'users/sign_in',
-      storage: 'localStorage',
-      confirmationSuccessUrl: confirmationLocation,
-      passwordResetSuccessUrl: passwordResetSuccessLocation
-    });
+  function authSetup(authConfigProvider) {
     authConfigProvider.authKey("email");
     authConfigProvider.enableRecovery();
   }
   Object.defineProperty(authSetup, "annotations", {get: function() {
-      return [new Config('$authProvider', 'authConfigProvider')];
+      return [new Config('authConfigProvider')];
     }});
   var authModule = new Module('auth', ['ng-token-auth', Sessions, Registrations, Confirmations, Passwords, AuthConfig, authSetup]);
   var $__default = authModule;
